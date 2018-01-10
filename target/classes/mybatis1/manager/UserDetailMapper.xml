@@ -119,6 +119,35 @@
         </set>
         where user_code = #{user_code}
      </update>
+     
+     <update id="changeusertype" parameterType="pd">
+        update tb_user 
+        <set> 
+            user_type = #{userType} ,
+            modify_time = now()
+        </set>
+        where user_code = #{user_code}
+     </update>
+     
+     <update id="changeusertypedetail" parameterType="pd">
+        update tb_user_detail 
+        <set> 
+            user_type = #{userType} ,
+            modify_time = now()
+        </set>
+        where user_code = #{user_code}
+     </update>
+     
+       <update id="changeusertypefriend" parameterType="pd">
+        update tb_user_friendship 
+        <set> 
+            recomuser_type = #{userType} ,
+            modify_time = now()
+        </set>
+        where recomuser_code = #{user_code}
+     </update>
+   
+     
 <!--      重置密码 -->
      <update id="resetPassword" parameterType="pd">
         update tb_user

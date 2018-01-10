@@ -69,6 +69,24 @@ public class UserDetailService {
         dao.update("UserDetailMapper.updatebuyflag", pd);
     }
     /**
+     * @describe:更新订单状态
+     * @author: kelvin
+     * @date: 2016年9月25日
+     * @param pd
+     * @throws Exception
+     * @return: void
+     */
+    public void updateUserType(PageData pd)throws Exception{
+        pd.put("operator", "sys");
+        dao.update("UserDetailMapper.changeusertype", pd);
+        dao.update("UserDetailMapper.changeusertypedetail", pd);
+        dao.update("UserDetailMapper.changeusertypefriend", pd);
+        
+        
+    }
+    
+    
+    /**
      * @describe:更新用户状态
      * @author: zhangchunming
      * @date: 2016年9月26日下午4:57:44

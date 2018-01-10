@@ -11,7 +11,13 @@
 	<head>
 	<base href="<%=basePath%>"><!-- jsp文件头和头部 -->
 <!-- jsp文件头和头部 -->
+<!-- 下拉框 -->
+<link rel="stylesheet" href="static/ace/css/chosen.css" />
+<!-- jsp文件头和头部 -->
 <%@ include file="../../system/index/top.jsp"%>
+<!-- 日期框 -->
+<link rel="stylesheet" href="static/ace/css/datepicker.css" />
+
     <style type="text/css">
         .right{text-align: right;}
     </style>
@@ -113,8 +119,9 @@
 								<td class='center' style="width: 30px;">${vs.index+1}</td>
 								<td>${var.user_name }</td>
 								<td>${var.real_name }</td>
-								<td><a href="javascript:getUserDetail('${var.email }')">${var.email }</a></td>
-								<td><a href="javascript:getUserDetail('${var.phone }')">${var.phone }</a></td>
+								<%-- <td><a href="javascript:getUserDetail('${var.email }')">${var.email }</a></td> --%>
+								<td>${var.email }</a></td>
+								<td>${var.phone }</a></td>
 								<td>${var.ref_username }</td>
 								<td><fmt:formatDate value="${var.create_time}" type="both"/></td>
 								<td>${var.total_amnt }</td>
@@ -122,12 +129,17 @@
 
                                 <td>
                                     <c:if test="${var.user_type == 1}">普通会员</c:if>
-                                    <c:if test="${var.user_type == 2}">机构会员</c:if>
+                                    <c:if test="${var.user_type == 2}">VIP会员</c:if>
                                 </td>
                                 <td><c:if test="${var.status ==1 }">有效</c:if><c:if test="${var.status ==0 }">禁用</c:if></td>
                                 <td class="center">
                                     <c:if test="${var.status ==1 }"><font color="grey">已启用</font>&nbsp;|&nbsp;<a href="javascript:disableStatus('${var.user_code }','0')"><font color="red">禁用 </a></font></c:if>
                                     <c:if test="${var.status ==0 }"><a href="javascript:disableStatus('${var.user_code }','1')">启用</a>&nbsp;|&nbsp;<font color="grey">已禁用</font></c:if>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <c:if test="${var.user_type ==1 }"><font color="grey">普通会员</font>&nbsp;|&nbsp;<a href="javascript:changeUsertype('${var.user_code }','2')"><font color="red">VIP会员 </a></font></c:if>
+                                    <c:if test="${var.user_type ==2 }"><a href="javascript:changeUsertype('${var.user_code }','1')">VIP会员</a>&nbsp;|&nbsp;<font color="grey">普通会员</font></c:if>
+                                    
+                                    
                                 </td>
 								
 								<%-- <td style="width: 30px;" class="center">
@@ -200,21 +212,27 @@
 		</a>
 		
 		<!-- 引入 -->
-		<script type="text/javascript">window.jQuery || document.write("<script src='js/jquery-1.9.1.min.js'>\x3C/script>");</script>
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/ace-elements.min.js"></script>
-		<script src="js/ace.min.js"></script>
-		
-		<script type="text/javascript" src="js/chosen.jquery.min.js"></script><!-- 下拉框 -->
-		<script type="text/javascript" src="js/bootstrap-datepicker.min.js"></script><!-- 日期框 -->
-		<script type="text/javascript" src="js/bootbox.min.js"></script><!-- 确认窗口 -->
-		<!-- 引入 -->
-		<script type="text/javascript" src="js/jquery.tips.js"></script><!--提示框-->
-        <script type="text/javascript" src="js/jquery.cookie.js"></script>
+		<script type="text/javascript">window.jQuery || document.write("<script src='static/ace/js/jquery.js'>\x3C/script>");</script>
+		<script src="static/ace/js/bootstrap.js"></script>
+		<script src="static/ace/js/ace-elements.js"></script>
+     
+        <!-- 页面底部js¨ -->
+	<%@ include file="../../system/index/foot.jsp"%>
+	<!-- 删除时确认窗口 -->
+	<script src="static/ace/js/bootbox.js"></script>
+	<!-- ace scripts -->
+	<script src="static/ace/js/ace/ace.js"></script>
+	<!-- 下拉框 -->
+	<script src="static/ace/js/chosen.jquery.js"></script>
+	<!-- 日期框 -->
+	<script src="static/ace/js/date-time/bootstrap-datepicker.js"></script>
+	<!--提示框-->
+	<script type="text/javascript" src="static/js/jquery.tips.js"></script>
+        
 		<script type="text/javascript">
 		
 	
-		$(window.parent.hangge());
+		/* $(window.parent.hangge()); */
 		//检索
 		function search(){
 			alert("1");
@@ -269,8 +287,8 @@
 		}
 		function disableStatus(user_code,status){			
 			 var url = "<%=basePath%>userdetail/disableStatus.do";	
-			 alert(url);
-			 $.ajax({
+			
+			 /* $.ajax({
 					type: "POST",
 					url: 'http://127.0.0.1:8080/MVNFHM/userdetail/disableStatus.do?user_code=10000000307&status=1',
 			    	data: {},
@@ -285,17 +303,49 @@
 							alert(data.message);
 						}
 					}
-				});
+				}); */
 			 
 			 
-			/*  $.post(url,{'user_code':user_code,'status':status},function(data){
+			 $.post(url,{'user_code':user_code,'status':status},function(data){
 				if(data.success){
 					window.location.reload();
 				}else{
 					alert(data.message);
 				}
-			}); */ 
+			}); 
 		}
+		
+		function changeUsertype(user_code,userType){			
+			 var url = "<%=basePath%>userdetail/changeusertype.do";	
+			 alert(url);
+			/*  $.ajax({
+					type: "POST",
+					url: 'http://127.0.0.1:8080/MVNFHM/userdetail/changeusertype.do?user_code=10000000307&userType=2',
+			    	data: {},
+					dataType:'json',
+					//beforeSend: validateData,
+					cache: false,
+					success: function(data){
+						alert(data);
+						if(data.success){
+							window.location.reload();
+						}else{
+							alert(data.message);
+						}
+					}
+				}); */
+			 
+			 
+			  $.post(url,{'user_code':user_code,'userType':userType},function(data){
+				if(data.success){
+					window.location.reload();
+				}else{
+					alert(data.message);
+				}
+			}); 
+		}
+		
+		
 		function resetPassword(user_code){
 			 bootbox.confirm("确定要重置吗？", function (result) {  
                 if(result) {  

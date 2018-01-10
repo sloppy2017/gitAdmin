@@ -54,8 +54,9 @@
                 <div class="row-fluid">
                 <div class="span4">
                     <ul>
+                   	    <li class="text-info">用户名：${userDetail.user_name }</li>
                         <li class="text-info">注册时间：${userDetail.create_time }</li>
-                        <li class="text-info">会员类型：<c:if test="${userDetail.user_type==1 }">普通会员</c:if><c:if test="${userDetail.user_type==4 }">投资机构</c:if></li>
+                        <li class="text-info">会员类型：<c:if test="${userDetail.user_type==1 }">普通会员</c:if><c:if test="${userDetail.user_type==2 }">VIP会员</c:if></li>
                         <li class="text-info">姓名：${userDetail.real_name }</li>
                         <li class="text-info">手机号：${userDetail.phone }</li>
                         <li class="text-info">身份证号：${userDetail.idno }</li>
@@ -65,11 +66,11 @@
                 </div>
                 <div class="span4">
                     <ul>
-                        <li class="text-info">推介人：${userDetail.ref_real_name }</li>
-                        <li class="text-info">微信号：${userDetail.wxnum }</li>
+                        <li class="text-info">推介人：${userDetail.ref_username }</li>
+                       <%--  <li class="text-info">微信号：${userDetail.wxnum }</li>
                         <li class="text-info">支付宝账号：${userDetail.bankaccno }</li>
                         <li class="text-info">通信地址：${userDetail.mail_addrss }</li>
-                        <li class="text-info">邮政编码：${userDetail.zip_code }</li>
+                        <li class="text-info">邮政编码：${userDetail.zip_code }</li> --%>
                         <!-- <li>Ordered List Item # 1</li>
                         <li class="text-info">.text-info Ordered List Item</li>
                         <li class="text-error">.text-error Ordered List Item</li>
@@ -82,10 +83,10 @@
                 <div class="span4">
                     <ul>
                         <li class="text-info">账户总额：${userDetail.total_amnt }</li>
-                        <li class="text-info">可用余额：${userDetail.avb_amnt }</li>
+                     <%--    <li class="text-info">可用余额：${userDetail.avb_amnt }</li>
                         <li class="text-info">冻结余额：${userDetail.froze_amnt }</li>
                         <li class="text-info">获得奖励：${userDetail.bonuses }</li>
-                        <li class="text-info">获得发放：${userDetail.reward }</li>
+                        <li class="text-info">获得发放：${userDetail.reward }</li> --%>
                     </ul>
                 </div>
                </div>
@@ -128,8 +129,8 @@
           </div>
       </div> 
     </div>
-             <form action="business/user/getUserDetail.do" method="post" name="Form" id="Form">
-             <input type="hidden" name="phone" value="${userDetail.phone }"/>
+             <form action="userdetail/getUserDetail.do" method="post" name="Form" id="Form">
+             <input type="hidden" name="user_name" value="${userDetail.user_name }"/>
             <!-- 检索  -->
         
             <table id="table_report" class="table table-striped table-bordered table-hover">

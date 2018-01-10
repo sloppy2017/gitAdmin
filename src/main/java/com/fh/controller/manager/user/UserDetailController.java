@@ -176,6 +176,26 @@ public class UserDetailController extends BaseController {
 	    }
 	    return ar;
 	}
+	
+	
+	@RequestMapping(value="/changeusertype")
+	@ResponseBody
+	public AjaxResponse changeUsertype() throws Exception{
+	    logBefore(logger, "修改用户类型");
+	    AjaxResponse ar = new AjaxResponse();
+	    try{
+	        PageData pd = new PageData();
+	        pd = this.getPageData();
+	        userDetailService.updateUserType(pd);
+	        ar.setSuccess(true);
+	    } catch(Exception e){
+	        logger.error(e.toString(), e);
+	        ar.setSuccess(false);
+	        ar.setMessage("系统异常，修改失败！");
+	    }
+	    return ar;
+	}
+	
 	@RequestMapping(value="/resetPassword")
 	@ResponseBody
 	public AjaxResponse resetPassword() throws Exception{
