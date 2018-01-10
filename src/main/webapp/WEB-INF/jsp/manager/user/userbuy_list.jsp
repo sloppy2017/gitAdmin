@@ -230,15 +230,15 @@
 	<script type="text/javascript" src="static/js/jquery.tips.js"></script>
         
 		<script type="text/javascript">
-		
+		$(top.hangge());//关闭加载状态
 	
 		/* $(window.parent.hangge()); */
 		//检索
 		function search(){
-			alert("1");
+			
 // 			window.parent.jzts();
-<%-- 			$("#Form").attr("action","<%=basePath%>/business/user/userbuyListPage.do"); --%>
-// 			$("#Form").submit();
+			$("#Form").attr("action","<%=basePath%>userdetail/userbuyListPage.do"); 
+			$("#Form").submit();
 		}
 		function clearValue(){
 			$("input").not("input[type='button']").val("");
@@ -317,7 +317,7 @@
 		
 		function changeUsertype(user_code,userType){			
 			 var url = "<%=basePath%>userdetail/changeusertype.do";	
-			 alert(url);
+			
 			/*  $.ajax({
 					type: "POST",
 					url: 'http://127.0.0.1:8080/MVNFHM/userdetail/changeusertype.do?user_code=10000000307&userType=2',
