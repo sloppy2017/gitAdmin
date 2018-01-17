@@ -248,6 +248,7 @@ public class UserDetailController extends BaseController {
             
             Map<String,Object> dataMap = new HashMap<String,Object>();
             List<String> titles = new ArrayList<String>();
+            System.out.println("excel down");
             titles.add("用户名");      //1
             titles.add("真实姓名");      //2
             titles.add("手机号");       //3
