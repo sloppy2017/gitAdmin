@@ -6,6 +6,7 @@
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+	String basePathIpAndPort = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort();
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -227,7 +228,7 @@
 		
 		//保存
 		function save(){
-			if(typeof($("#tpz").val()) == "undefined"){
+			/* if(typeof($("#tpz").val()) == "undefined"){
 				if($("#tp").val()=="" || document.getElementById("tp").files[0] =='请选择视频'){
 					
 					$("#tp").tips({
@@ -250,6 +251,47 @@
 			        });
 					return false;
 				}
+			} */
+			
+			if($("#PROJECT_NAME").val()==""){
+				$("#PROJECT_NAME").tips({
+					side:3,
+		            msg:'项目名不能为空！',
+		            bg:'#AE81FF',
+		            time:2
+		        });
+				$("#PROJECT_NAME").focus();
+			return false;
+			}
+			if($("#START_TIME").val()==""){
+				$("#START_TIME").tips({
+					side:3,
+		            msg:'开始时间不能为空！',
+		            bg:'#AE81FF',
+		            time:2
+		        });
+				$("#START_TIME").focus();
+			return false;
+			}
+			if($("#END_TIME").val()==""){
+				$("#END_TIME").tips({
+					side:3,
+		            msg:'结束时间不能为空！',
+		            bg:'#AE81FF',
+		            time:2
+		        });
+				$("#END_TIME").focus();
+			return false;
+			}
+			if($("#BROWSE_NUM").val()==""){
+				$("#BROWSE_NUM").tips({
+					side:3,
+		            msg:'浏览数不能为空！',
+		            bg:'#AE81FF',
+		            time:2
+		        });
+				$("#BROWSE_NUM").focus();
+			return false;
 			}
 			if($("#TYPE").val()=="1"){
 				$("#PROJECT_DESC_DETAIL").val(getContentTxt());
