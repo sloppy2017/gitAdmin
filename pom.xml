@@ -102,6 +102,12 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>${mysql-connector-java.version}</version>
 		</dependency>
+		
+		<dependency>
+		    <groupId>org.json</groupId>
+		    <artifactId>json</artifactId>
+		    <version>20171018</version>
+		</dependency>
 
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -508,11 +514,11 @@
 		</dependency>
 		<!-- ueditor -->
 		<dependency>
-			<groupId>ueditor</groupId>
-			<artifactId>ueditor</artifactId>
-			<version>1.0</version>
+			<groupId>com.baidu</groupId>  
+		    <artifactId>ueditor</artifactId>  
+		    <version>1.1.2</version>  
 			<scope>system</scope>
-			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/ueditor.jar</systemPath>
+			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/ueditor-1.1.2.jar</systemPath>
 		</dependency>
 		<!-- java_websocket -->
 		<dependency>

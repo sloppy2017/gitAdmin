@@ -6,16 +6,16 @@
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-	String basePathIpAndPort = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort();
 %>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-	<base href="<%=basePath%>">
+	<base href="<%=basePath%>">  
 	<!-- 下拉框 -->
 	<link rel="stylesheet" href="static/ace/css/chosen.css" />
 	<!-- jsp文件头和头部 -->
 	<%@ include file="../../system/index/top.jsp"%>
+	 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 	<style type="text/css">
 		#dialog-add,#dialog-message,#dialog-comment{width:100%; height:100%; position:fixed; top:0px; z-index:99999999; display:none;}
 		.commitopacity{position:absolute; width:100%; height:700px; background:#7f7f7f; filter:alpha(opacity=50); -moz-opacity:0.5; -khtml-opacity: 0.5; opacity: 0.5; top:0px; z-index:99999;}
@@ -60,7 +60,10 @@
 							<tr>
 								<td style="width:75px;text-align: right;padding-top: 13px;">项目描述:</td>
 								<td style="padding-top: 3px;">
-									 <script id="editor" type="text/plain" style="width:643px;height:259px;"></script>
+									<!--  <script id="editor" type="text/plain" style="width:643px;height:259px;"></script> -->
+									 <textarea id="editor" name="editor"
+										style="width: 800px; height: 400px; margin: 0 auto;">
+										</textarea>
 									 <label style="float:left;padding-left: 32px;"><input name="form-field-radio" id="form-field-radio1" onclick="setType('1');" checked="checked" type="radio" class="ace" value="icon-edit"><span class="lbl">纯文本</span></label>
 									<label style="float:left;padding-left: 5px;"><input name="form-field-radio" id="form-field-radio2" onclick="setType('2');" type="radio" value="icon-edit" class="ace" ><span class="lbl">带标签</span></label>
 								</td>
@@ -202,7 +205,6 @@
 	<!--提示框-->
 	<script type="text/javascript" src="static/js/jquery.tips.js"></script>
 		<script type="text/javascript">
-		
 		$(top.hangge());
 		$(function() {
 			//上传
