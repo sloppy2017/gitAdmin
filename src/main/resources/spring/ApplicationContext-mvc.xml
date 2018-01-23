@@ -18,7 +18,10 @@
 	<mvc:resources mapping="/admin/**" location="/,/admin/" />
 	<mvc:resources mapping="/static/**" location="/,/static/" />
 	<mvc:resources mapping="/plugins/**" location="/,/plugins/" />
-	<mvc:resources mapping="/uploadFiles/**" location="/,/uploadFiles/" /> 
+	<mvc:resources mapping="/uploadFiles/**" location="/,/uploadFiles/" />
+	<mvc:resources mapping="/uploadFiles/file/**/**" location="/,/file/" /> 
+	<mvc:resources mapping="/uploadFiles/video/**/**" location="/,/video/" /> 
+	<mvc:resources mapping="/plugins/ueditor/jsp/upload/image/**/**" location="/,/ueditorImg/" /> 
 
 	<!-- 访问拦截  -->  
   	<mvc:interceptors>
