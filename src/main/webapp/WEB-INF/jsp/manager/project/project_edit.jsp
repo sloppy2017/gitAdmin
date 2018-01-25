@@ -48,7 +48,7 @@
 						<input type="hidden" name="PROJECT_ID" id="PROJECT_ID" value="${pd.PROJECT_ID}"/>
 						
 						<textarea name="PROJECT_DESC_DETAIL" id="PROJECT_DESC_DETAIL" style="display:none" ></textarea>
-						<input type="hidden" name="TYPE" id="TYPE" value="1"/>
+						<input type="hidden" name="TYPE" id="TYPE" value="2"/>
 						
 						<div id="zhongxin" style="padding-top: 13px;">
 						<table id="table_report" class="table table-striped table-bordered table-hover">
@@ -64,8 +64,8 @@
 									 <textarea id="editor" name="editor"
 										style="width: 800px; height: 400px; margin: 0 auto;">
 										</textarea>
-									 <label style="float:left;padding-left: 32px;"><input name="form-field-radio" id="form-field-radio1" onclick="setType('1');" checked="checked" type="radio" class="ace" value="icon-edit"><span class="lbl">纯文本</span></label>
-									<label style="float:left;padding-left: 5px;"><input name="form-field-radio" id="form-field-radio2" onclick="setType('2');" type="radio" value="icon-edit" class="ace" ><span class="lbl">带标签</span></label>
+									 <label style="float:left;padding-left: 32px;"><input name="form-field-radio" id="form-field-radio1" onclick="setType('1');"  type="radio" class="ace" value="icon-edit"><span class="lbl">纯文本</span></label>
+									<label style="float:left;padding-left: 5px;"><input name="form-field-radio" id="form-field-radio2" onclick="setType('2');" checked="checked" type="radio" value="icon-edit" class="ace" ><span class="lbl">带标签</span></label>
 								</td>
 							</tr>
 							
@@ -112,8 +112,8 @@
 								<td style="width:75px;text-align: right;padding-top: 13px;">文章权限:</td>
 								<td>
 									<select name="VISIBLE_TYPE" id="VISIBLE_TYPE" title="文章权限">
-										<c:forEach items="${visible_types}" var="types">
-											<option value="${types.NAME_EN}" <c:if test="${types.NAME_EN == pd.VISIBLE_TYPE }">selected</c:if>>${types.NAME }</option>
+										<c:forEach items="${isornots}" var="isornot">
+											<option value="${isornot.NAME_EN}" <c:if test="${isornot.NAME_EN == pd.VISIBLE_TYPE }">selected</c:if>>${isornot.NAME }</option>
 										</c:forEach>
 									</select>
 								</td>
@@ -151,8 +151,9 @@
 								<td style="width:75px;text-align: right;padding-top: 13px;">是否推荐:</td>
 								<td>
 									<select name="IS_RECOMMEND" id="IS_RECOMMEND" title="是否推荐">
-										<c:forEach items="${isornots}" var="isornot">
-											<option value="${isornot.NAME_EN}" <c:if test="${isornot.NAME_EN == pd.IS_RECOMMEND }">selected</c:if>>${isornot.NAME }</option>
+										
+										<c:forEach items="${visible_types}" var="types">
+											<option value="${types.NAME_EN}" <c:if test="${types.NAME_EN == pd.IS_RECOMMEND }">selected</c:if>>${types.NAME }</option>
 										</c:forEach>
 									</select>
 								</td>
