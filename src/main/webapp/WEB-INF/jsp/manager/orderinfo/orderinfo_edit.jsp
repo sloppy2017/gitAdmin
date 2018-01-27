@@ -37,7 +37,13 @@
 							</tr>
 							<tr>
 								<td style="width:75px;text-align: right;padding-top: 13px;">兑换币种:</td>
-								<td><input type="text" name="ORDER_TYPE" id="ORDER_TYPE" value="${pd.ORDER_TYPE}" maxlength="50" placeholder="这里输入兑换币种" title="兑换币种" style="width:98%;"/></td>
+								<td>
+									<select name="ORDER_TYPE" id="ORDER_TYPE" title="兑换币种">
+										<c:forEach items="${currencys}" var="currency">
+											<option value="${currency.NAME_EN}" <c:if test="${currency.NAME_EN == pd.ORDER_TYPE }">selected</c:if>>${currency.NAME }</option>
+										</c:forEach>
+									</select>
+								</td>
 							</tr>
 							<tr>
 								<td style="width:75px;text-align: right;padding-top: 13px;">兑换数量:</td>

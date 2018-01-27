@@ -113,6 +113,8 @@ public class OrderInfoController extends BaseController {
 		List<PageData>	varList = orderinfoService.list(page);	//列出OrderInfo列表
 		mv.setViewName("manager/orderinfo/orderinfo_list");
 		List<Dictionaries>	order_statuss = dictionariesService.listSubDictByParentId("8f21300103624210969e51122fb02b4a"); //订单状态
+		List<Dictionaries>	currencys = dictionariesService.listSubDictByParentId("b90241d67570474e905b58c6d18c9495"); //币种
+		mv.addObject("currencys", currencys);
 		mv.addObject("order_statuss", order_statuss);
 		mv.addObject("varList", varList);
 		mv.addObject("pd", pd);
@@ -131,6 +133,8 @@ public class OrderInfoController extends BaseController {
 		pd = this.getPageData();
 		mv.setViewName("manager/orderinfo/orderinfo_edit");
 		List<Dictionaries>	order_statuss = dictionariesService.listSubDictByParentId("8f21300103624210969e51122fb02b4a"); //订单状态
+		List<Dictionaries>	currencys = dictionariesService.listSubDictByParentId("b90241d67570474e905b58c6d18c9495"); //币种
+		mv.addObject("currencys", currencys);
 		mv.addObject("order_statuss", order_statuss);
 		mv.addObject("msg", "save");
 		mv.addObject("pd", pd);
@@ -149,6 +153,8 @@ public class OrderInfoController extends BaseController {
 		pd = orderinfoService.findById(pd);	//根据ID读取
 		mv.setViewName("manager/orderinfo/orderinfo_edit");
 		List<Dictionaries>	order_statuss = dictionariesService.listSubDictByParentId("8f21300103624210969e51122fb02b4a"); //订单状态
+		List<Dictionaries>	currencys = dictionariesService.listSubDictByParentId("b90241d67570474e905b58c6d18c9495"); //币种
+		mv.addObject("currencys", currencys);
 		mv.addObject("order_statuss", order_statuss);
 		mv.addObject("msg", "edit");
 		mv.addObject("pd", pd);
@@ -206,10 +212,20 @@ public class OrderInfoController extends BaseController {
 		List<PageData> varOList = orderinfoService.listAll(pd);
 		List<PageData> varList = new ArrayList<PageData>();
 		List<Dictionaries>	order_statuss = dictionariesService.listSubDictByParentId("8f21300103624210969e51122fb02b4a"); //订单状态
+		List<Dictionaries>	currencys = dictionariesService.listSubDictByParentId("b90241d67570474e905b58c6d18c9495"); //币种
 		for(int i=0;i<varOList.size();i++){
 			PageData vpd = new PageData();
 			vpd.put("var1", varOList.get(i).getString("USER_NAME"));	    //1
-			vpd.put("var2", varOList.get(i).getString("ORDER_TYPE"));	    //2
+			String currency ="";
+			if(!StringUtils.isBlank(varOList.get(i).getString("ORDER_TYPE"))){
+				for(Dictionaries  dic :  currencys){
+					if(dic.getNAME_EN().equals(varOList.get(i).getString("ORDER_TYPE"))){
+						currency = dic.getNAME();
+						break;
+					}
+				}
+			}
+			vpd.put("var2", currency);	    //2
 			vpd.put("var3", varOList.get(i).getString("NUM"));	    //3
 			vpd.put("var4", varOList.get(i).getString("NEW_NUM"));	    //4
 			vpd.put("var5", varOList.get(i).getString("EMAIL"));	    //5

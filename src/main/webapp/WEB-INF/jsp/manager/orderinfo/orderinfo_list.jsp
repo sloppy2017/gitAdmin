@@ -91,7 +91,11 @@
 											</td>
 											<td class='center' style="width: 30px;">${vs.index+1}</td>
 											<td class='center'>${var.USER_NAME}</td>
-											<td class='center'>${var.ORDER_TYPE}</td>
+											<td class='center'>
+												<c:forEach items="${currencys}" var="currency">
+														<c:if test="${currency.NAME_EN == var.ORDER_TYPE}">${currency.NAME }</c:if>
+												</c:forEach>
+											</td>
 											<td class='center'>${var.NUM}</td>
 											<td class='center'>${var.NEW_NUM}</td>
 											<td class='center'>${var.EMAIL}</td>
