@@ -155,12 +155,13 @@ public class ProjectController extends BaseController {
 		}else{
 			pd.put("FILE_URL", tpz1);
 		}
-		
+		String path = request.getContextPath();
+		String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/"+"uploadFiles"+"/"+"file"+"/";
 		if(null == tpz2){tpz2 = "";}
 		if (null != file2 && !file2.isEmpty()) {
 			String filePath = PathUtil.getClasspath() + Const.FILEPATHFILE + ffile;	//图片
 			fileName = FileUpload.fileUp(file2, filePath, this.get32UUID());			//执行上传
-			pd.put("COVER_PICTURE", ffile + "/" + fileName);									//路径
+			pd.put("COVER_PICTURE", basePath+ffile + "/" + fileName);									//路径
 			//pd.put("NAME", fileName);
 		}else{
 			pd.put("COVER_PICTURE", tpz1);
@@ -252,12 +253,13 @@ public class ProjectController extends BaseController {
 			}else{
 				pd.put("FILE_URL", tpz1);
 			}
-
+			String path = request.getContextPath();
+			String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/"+"uploadFiles"+"/"+"file"+"/";
 			if(null == tpz2){tpz2 = "";}
 			if (null != file2 && !file2.isEmpty()) {
 				String filePath = PathUtil.getClasspath() + Const.FILEPATHFILE + ffile;	//图片
 				fileName = FileUpload.fileUp(file2, filePath, this.get32UUID());			//执行上传
-				pd.put("COVER_PICTURE", ffile + "/" + fileName);									//路径
+				pd.put("COVER_PICTURE", basePath+ffile + "/" + fileName);									//路径
 				//pd.put("NAME", fileName);
 			}else{
 				pd.put("COVER_PICTURE", tpz1);

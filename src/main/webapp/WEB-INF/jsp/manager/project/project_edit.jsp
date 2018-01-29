@@ -154,7 +154,7 @@
 									<input type="file" id="tp2" name="tp2"  onchange=""/>
 									</c:if>
 									<c:if test="${pd != null && pd.COVER_PICTURE != '' && pd.COVER_PICTURE != null }">
-										<a href="<%=basePath%>uploadFiles/file/${pd.COVER_PICTURE}" target="_blank">文件点击查看</a>
+										<a href="${pd.COVER_PICTURE}" target="_blank">文件点击查看</a>
 										<input type="button" class="btn btn-mini btn-danger" value="删除" onclick="delP2('${pd.COVER_PICTURE}','${pd.PROJECT_ID }');" />
 										<input type="hidden" name="tpz2" id="tpz2" value="${pd.COVER_PICTURE }"/>
 									</c:if>
