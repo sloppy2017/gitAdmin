@@ -57,6 +57,7 @@ public interface ProjectManager{
 	public void delTp(PageData pd)throws Exception;
 	
 	public void delTp1(PageData pd)throws Exception;
+	public void delTp2(PageData pd)throws Exception;
 	
 }
 

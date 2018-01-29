@@ -86,5 +86,9 @@ public class ProjectService implements ProjectManager{
 		dao.update("ProjectMapper.delTp1", pd);
 	}
 	
+	public void delTp2(PageData pd)throws Exception{
+		dao.update("ProjectMapper.delTp2", pd);
+	}
+	
 }
 

@@ -91,6 +91,21 @@ public class ProjectController extends BaseController {
 		out.close();
 	}
 	
+	@RequestMapping(value="/deltp2")
+	public void deltp2(PrintWriter out) throws Exception {
+		PageData pd = new PageData();
+		pd = this.getPageData();
+		String PATH = pd.getString("COVER_PICTURE");	
+		if(Tools.notEmpty(pd.getString("COVER_PICTURE").trim())){//图片路径
+			DelAllFile.delFolder(PathUtil.getClasspath()+ Const.FILEPATHIMG + pd.getString("COVER_PICTURE")); 	//删除图片
+		}
+		if(PATH != null){
+			projectService.delTp2(pd);																//删除数据库中图片数据
+		}	
+		out.write("success");
+		out.close();
+	}
+	
 	/**保存
 	 * @param
 	 * @throws Exception
@@ -100,8 +115,10 @@ public class ProjectController extends BaseController {
 			HttpServletRequest request,
 			@RequestParam(value="tp",required=false) MultipartFile file,
 			@RequestParam(value="tp1",required=false) MultipartFile file1,
+			@RequestParam(value="tp2",required=false) MultipartFile file2,
 			@RequestParam(value="tpz",required=false) String tpz,
 			@RequestParam(value="tpz1",required=false) String tpz1,
+			@RequestParam(value="tpz2",required=false) String tpz2,
 			@RequestParam(value="PROJECT_NAME",required=false) String PROJECT_NAME,
 			@RequestParam(value="PROJECT_DESC_DETAIL",required=false) String PROJECT_DESC_DETAIL,
 			@RequestParam(value="COMPANY_NAME",required=false) String COMPANY_NAME,
@@ -138,6 +155,17 @@ public class ProjectController extends BaseController {
 		}else{
 			pd.put("FILE_URL", tpz1);
 		}
+		
+		if(null == tpz2){tpz2 = "";}
+		if (null != file2 && !file2.isEmpty()) {
+			String filePath = PathUtil.getClasspath() + Const.FILEPATHFILE + ffile;	//图片
+			fileName = FileUpload.fileUp(file2, filePath, this.get32UUID());			//执行上传
+			pd.put("COVER_PICTURE", ffile + "/" + fileName);									//路径
+			//pd.put("NAME", fileName);
+		}else{
+			pd.put("COVER_PICTURE", tpz1);
+		}
+		
 		pd.put("PROJECT_NAME", PROJECT_NAME);
 		pd.put("PROJECT_DESC_DETAIL", PROJECT_DESC_DETAIL);
 		pd.put("COMPANY_NAME", COMPANY_NAME);
@@ -180,9 +208,10 @@ public class ProjectController extends BaseController {
 			HttpServletRequest request,
 			@RequestParam(value="tp",required=false) MultipartFile file,
 			@RequestParam(value="tp1",required=false) MultipartFile file1,
+			@RequestParam(value="tp2",required=false) MultipartFile file2,
 			@RequestParam(value="tpz",required=false) String tpz,
 			@RequestParam(value="tpz1",required=false) String tpz1,
-			
+			@RequestParam(value="tpz2",required=false) String tpz2,
 			@RequestParam(value="PROJECT_ID",required=false) String PROJECT_ID,
 			@RequestParam(value="PROJECT_NAME",required=false) String PROJECT_NAME,
 			@RequestParam(value="PROJECT_DESC_DETAIL",required=false) String PROJECT_DESC_DETAIL,
@@ -224,6 +253,16 @@ public class ProjectController extends BaseController {
 				pd.put("FILE_URL", tpz1);
 			}
 
+			if(null == tpz2){tpz2 = "";}
+			if (null != file2 && !file2.isEmpty()) {
+				String filePath = PathUtil.getClasspath() + Const.FILEPATHFILE + ffile;	//图片
+				fileName = FileUpload.fileUp(file2, filePath, this.get32UUID());			//执行上传
+				pd.put("COVER_PICTURE", ffile + "/" + fileName);									//路径
+				//pd.put("NAME", fileName);
+			}else{
+				pd.put("COVER_PICTURE", tpz1);
+			}
+			
 			pd.put("PROJECT_ID", PROJECT_ID);
 			pd.put("PROJECT_NAME", PROJECT_NAME);
 			pd.put("PROJECT_DESC_DETAIL", PROJECT_DESC_DETAIL);

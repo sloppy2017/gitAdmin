@@ -146,6 +146,21 @@
 									</c:if>
 								</td>
 							</tr>
+							
+							<tr>
+								<td style="width:50px;text-align: right;padding-top: 13px;">图片地址:</td>
+								<td>
+									<c:if test="${pd == null || pd.COVER_PICTURE == '' || pd.COVER_PICTURE == null }">
+									<input type="file" id="tp2" name="tp2"  onchange=""/>
+									</c:if>
+									<c:if test="${pd != null && pd.COVER_PICTURE != '' && pd.COVER_PICTURE != null }">
+										<a href="<%=basePath%>uploadFiles/file/${pd.COVER_PICTURE}" target="_blank">文件点击查看</a>
+										<input type="button" class="btn btn-mini btn-danger" value="删除" onclick="delP2('${pd.COVER_PICTURE}','${pd.PROJECT_ID }');" />
+										<input type="hidden" name="tpz2" id="tpz2" value="${pd.COVER_PICTURE }"/>
+									</c:if>
+								</td>
+							</tr>
+							
 								
 							<tr>
 								<td style="width:75px;text-align: right;padding-top: 13px;">是否推荐:</td>
@@ -220,6 +235,15 @@
 			
 			$('#tp1').ace_file_input({
 				no_file:'请选择文件 ...',
+				btn_choose:'选择',
+				btn_change:'更改',
+				droppable:false,
+				onchange:null,
+				thumbnail:false
+			});
+			
+			$('#tp2').ace_file_input({
+				no_file:'请选择图片 ...',
 				btn_choose:'选择',
 				btn_change:'更改',
 				droppable:false,
@@ -322,6 +346,19 @@
 		function delP1(FILE_URL,PROJECT_ID){
 			 if(confirm("确定要删除文件？")){
 				var url = "project/deltp1.do?FILE_URL="+FILE_URL+"&PROJECT_ID="+PROJECT_ID+"&guid="+new Date().getTime();
+				$.get(url,function(data){
+					if(data=="success"){
+						alert("删除文件成功!");
+						document.location.reload();
+					}
+				});
+			} 
+		}
+		
+		//删除文件
+		function delP2(COVER_PICTURE,PROJECT_ID){
+			 if(confirm("确定要删除图片？")){
+			 var url = "project/deltp2.do?COVER_PICTURE="+COVER_PICTURE+"&PROJECT_ID="+PROJECT_ID+"&guid="+new Date().getTime();
 				$.get(url,function(data){
 					if(data=="success"){
 						alert("删除文件成功!");

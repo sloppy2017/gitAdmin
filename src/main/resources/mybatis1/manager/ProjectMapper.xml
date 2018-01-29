@@ -23,6 +23,7 @@
 		FILE_URL,	
 		IS_RECOMMEND,	
 		BROWSE_NUM,	
+		COVER_PICTURE,	
 		PROJECT_ID
 	</sql>
 	
@@ -42,6 +43,7 @@
 		#{FILE_URL},	
 		#{IS_RECOMMEND},	
 		#{BROWSE_NUM},	
+		#{COVER_PICTURE},
 		#{PROJECT_ID}
 	</sql>
 	
@@ -82,6 +84,7 @@
 			VIDEO_URL = #{VIDEO_URL},
 			FILE_URL = #{FILE_URL},
 			IS_RECOMMEND = #{IS_RECOMMEND},
+			COVER_PICTURE = #{COVER_PICTURE},
 			BROWSE_NUM = #{BROWSE_NUM},
 		PROJECT_ID = PROJECT_ID
 		where 
@@ -143,6 +146,14 @@
 		update  <include refid="tableName"></include>
 			set 
 				FILE_URL			= ''
+			where 
+				PROJECT_ID = #{PROJECT_ID}
+	</update>
+	
+	<update id="delTp2" parameterType="pd">
+		update  <include refid="tableName"></include>
+			set 
+				COVER_PICTURE			= ''
 			where 
 				PROJECT_ID = #{PROJECT_ID}
 	</update>
