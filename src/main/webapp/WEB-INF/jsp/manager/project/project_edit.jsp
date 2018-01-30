@@ -126,7 +126,7 @@
 									<input type="file" id="tp" name="tp"  onchange=""/>
 									</c:if>
 									<c:if test="${pd != null && pd.VIDEO_URL != '' && pd.VIDEO_URL != null }">
-										<a href="<%=basePath%>uploadFiles/video/${pd.VIDEO_URL}" target="_blank">视频文件点击下载</a>
+										<a href="${pd.VIDEO_URL}" target="_blank">视频文件点击下载</a>
 										<input type="button" class="btn btn-mini btn-danger" value="删除" onclick="delP('${pd.VIDEO_URL}','${pd.PROJECT_ID }');" />
 										<input type="hidden" name="tpz" id="tpz" value="${pd.VIDEO_URL }"/>
 									</c:if>
@@ -140,7 +140,7 @@
 									<input type="file" id="tp1" name="tp1"  onchange=""/>
 									</c:if>
 									<c:if test="${pd != null && pd.FILE_URL != '' && pd.FILE_URL != null }">
-										<a href="<%=basePath%>uploadFiles/file/${pd.FILE_URL}" target="_blank">文件点击查看</a>
+										<a href="${pd.FILE_URL}" target="_blank">文件点击查看</a>
 										<input type="button" class="btn btn-mini btn-danger" value="删除" onclick="delP1('${pd.FILE_URL}','${pd.PROJECT_ID }');" />
 										<input type="hidden" name="tpz1" id="tpz1" value="${pd.FILE_URL }"/>
 									</c:if>
@@ -417,7 +417,8 @@
 			var ue = UE.getEditor('editor');
 			 ue.ready(function() {//编辑器初始化完成再赋值  
 		            //ue.setContent(contentVal);  //赋值给UEditor  
-		            ue.execCommand('insertHtml', '${pd.PROJECT_DESC_DETAIL}');
+		           ue.setContent(""); 
+		           ue.execCommand('insertHtml', '${pd.PROJECT_DESC_DETAIL}');
 		     });  
 			
 		}
