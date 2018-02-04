@@ -290,6 +290,18 @@
 				$("#PROJECT_NAME").focus();
 			return false;
 			}
+			
+			if($("#QUOTA_LIMIT").val()==""){
+				$("#QUOTA_LIMIT").tips({
+					side:3,
+		            msg:'名额限制不能为空！',
+		            bg:'#AE81FF',
+		            time:2
+		        });
+				$("#QUOTA_LIMIT").focus();
+			return false;
+			}
+			
 			if($("#START_TIME").val()==""){
 				$("#START_TIME").tips({
 					side:3,
@@ -320,6 +332,8 @@
 				$("#BROWSE_NUM").focus();
 			return false;
 			}
+			
+			
 			if($("#TYPE").val()=="1"){
 				$("#PROJECT_DESC_DETAIL").val(getContentTxt());
 			}else{
