@@ -73,6 +73,7 @@
 									<th class="center">新资产数量</th>
 									<th class="center">联系邮箱</th>
 									<th class="center">联系电话</th>
+									<th class="center">凭证</th>
 									<th class="center">兑换订单时间</th>
 									<th class="center">订单状态</th>
 									<th class="center">操作</th>
@@ -100,7 +101,11 @@
 											<td class='center'>${var.NEW_NUM}</td>
 											<td class='center'>${var.EMAIL}</td>
 											<td class='center'>${var.TEL}</td>
-											<td class='center'>${var.ORDER_TIME}</td>
+											<td class='center'>
+												<c:if test="${ not empty var.ORDER_FILEPATH }"><a href="${var.ORDER_FILEPATH}" target="_blank">凭证查看</a></c:if>
+												<c:if test="${  empty var.ORDER_FILEPATH }">没有凭证</c:if>
+											</td>
+											<td class='center'><fmt:formatDate value="${var.ORDER_TIME}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 											<td class='center'>
 												<c:forEach items="${order_statuss}" var="order_status">
 													<c:if test="${order_status.NAME_EN == var.ORDER_STATUS}">${order_status.NAME }</c:if>
