@@ -72,7 +72,7 @@
                     <span>注册时间:</span><input class="span10 date-picker" name="startTime" id="startTime" value="${pd.startTime}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" style="width:88px;" placeholder="开始日期"/>-
                     <input class="span10 date-picker" name="endTime" id="endTime" value="${pd.endTime}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" style="width:88px;" placeholder="结束日期"/></td>
                     <td >
-                    <button class="btn btn-mini btn-light" onclick="search();"  title="检索"><i id="nav-search-icon" class="icon-search"></i></button>
+                    <button class="btn btn-mini btn-light" onclick="search();"  title="检索">查询</button>
                    <%--  <c:if test="${QX.cha == 1 }"> --%>
                         <a class="btn btn-mini btn-light" onclick="toExcel();" title="导出到EXCEL"><i id="nav-search-icon" class="icon-download-alt"></i></a>
                    <%--  </c:if> --%>
@@ -207,9 +207,9 @@
 </div><!--/.fluid-container#main-container-->
 		
 		<!-- 返回顶部  -->
-		<a href="#" id="btn-scroll-up" class="btn btn-small btn-inverse">
+		<!-- <a href="#" id="btn-scroll-up" class="btn btn-small btn-inverse">
 			<i class="icon-double-angle-up icon-only"></i>
-		</a>
+		</a> -->
 		
 		<!-- 引入 -->
 		<script type="text/javascript">window.jQuery || document.write("<script src='static/ace/js/jquery.js'>\x3C/script>");</script>
