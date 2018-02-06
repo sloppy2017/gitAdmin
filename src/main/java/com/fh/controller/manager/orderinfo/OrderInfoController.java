@@ -1,6 +1,7 @@
 package com.fh.controller.manager.orderinfo;
 
 import java.io.PrintWriter;
+import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.annotation.Resource;
 
 import org.apache.commons.lang.StringUtils;
@@ -18,16 +20,17 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
 import com.fh.controller.base.BaseController;
 import com.fh.entity.Page;
 import com.fh.entity.system.Dictionaries;
+import com.fh.service.manager.orderinfo.OrderInfoManager;
+import com.fh.service.manager.project.ProjectManager;
+import com.fh.service.system.dictionaries.impl.DictionariesService;
 import com.fh.util.AppUtil;
+import com.fh.util.Jurisdiction;
 import com.fh.util.ObjectExcelView;
 import com.fh.util.PageData;
-import com.fh.util.Jurisdiction;
-import com.fh.util.Tools;
-import com.fh.service.manager.orderinfo.OrderInfoManager;
-import com.fh.service.system.dictionaries.impl.DictionariesService;
 
 /** 
  * 说明：订单管理
@@ -43,6 +46,8 @@ public class OrderInfoController extends BaseController {
 	private OrderInfoManager orderinfoService;
 	@Resource(name="dictionariesService")
 	private DictionariesService dictionariesService;
+	@Resource(name="projectService")
+	private ProjectManager projectService;
 	
 	/**保存
 	 * @param
@@ -88,8 +93,32 @@ public class OrderInfoController extends BaseController {
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		orderinfoService.edit(pd);
-		mv.addObject("msg","success");
+		String project_id = pd.getString("PROJECT_ID");
+		String order_status = pd.getString("ORDER_STATUS");
+		
+		if(StringUtils.isNotEmpty(order_status)&&order_status.equals("2")){
+			String new_num = pd.getString("NEW_NUM");
+			PageData projectPd = new PageData();
+			projectPd.put("PROJECT_ID", project_id);
+			projectPd =projectService.findById(projectPd);
+			String stock_num = projectPd.get("STOCK_NUM").toString(); 
+			String exchange_num = projectPd.get("EXCHANGE_NUM").toString();
+			BigDecimal new_num_val = new BigDecimal(new_num);
+			BigDecimal stock_num_val = new BigDecimal(stock_num);
+			BigDecimal exchange_num_val = new BigDecimal(exchange_num);
+			if( stock_num_val.subtract(new_num_val).doubleValue()<0){ //库存不足
+				mv.addObject("msg","failed");
+			}else{
+				projectPd.put("STOCK_NUM", stock_num_val.subtract(new_num_val).doubleValue());
+				projectPd.put("EXCHANGE_NUM", exchange_num_val.add(new_num_val).doubleValue());
+				projectService.edit(projectPd);
+				orderinfoService.edit(pd);
+				mv.addObject("msg","success");
+			}
+		}else{
+			orderinfoService.edit(pd);
+			mv.addObject("msg","success");
+		}
 		mv.setViewName("save_result");
 		return mv;
 	}

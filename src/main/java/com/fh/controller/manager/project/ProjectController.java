@@ -128,7 +128,9 @@ public class ProjectController extends BaseController {
 			@RequestParam(value="PROJECT_STATE",required=false) String PROJECT_STATE,
 			@RequestParam(value="VISIBLE_TYPE",required=false) String VISIBLE_TYPE,      
 			@RequestParam(value="IS_RECOMMEND",required=false) String IS_RECOMMEND,
-			@RequestParam(value="BROWSE_NUM",required=false) String BROWSE_NUM
+			@RequestParam(value="BROWSE_NUM",required=false) String BROWSE_NUM,
+			@RequestParam(value="STOCK_NUM",required=false) String STOCK_NUM
+			
 			) throws Exception{
 		logBefore(logger, Jurisdiction.getUsername()+"新增Project");
 		if(!Jurisdiction.buttonJurisdiction(menuUrl, "add")){return null;} //校验权限
@@ -178,6 +180,7 @@ public class ProjectController extends BaseController {
 		pd.put("VISIBLE_TYPE", VISIBLE_TYPE);
 		pd.put("IS_RECOMMEND", IS_RECOMMEND);
 		pd.put("BROWSE_NUM", BROWSE_NUM);
+		pd.put("STOCK_NUM", STOCK_NUM);
 		
 		pd.put("PROJECT_ID", this.get32UUID());	//主键
 		projectService.save(pd);
@@ -224,7 +227,8 @@ public class ProjectController extends BaseController {
 			@RequestParam(value="PROJECT_STATE",required=false) String PROJECT_STATE,
 			@RequestParam(value="VISIBLE_TYPE",required=false) String VISIBLE_TYPE,      
 			@RequestParam(value="IS_RECOMMEND",required=false) String IS_RECOMMEND,
-			@RequestParam(value="BROWSE_NUM",required=false) String BROWSE_NUM
+			@RequestParam(value="BROWSE_NUM",required=false) String BROWSE_NUM,
+			@RequestParam(value="STOCK_NUM",required=false) String STOCK_NUM
 			) throws Exception{
 		logBefore(logger, Jurisdiction.getUsername()+"修改Project");
 		if(!Jurisdiction.buttonJurisdiction(menuUrl, "edit")){return null;} //校验权限
@@ -277,7 +281,7 @@ public class ProjectController extends BaseController {
 			pd.put("VISIBLE_TYPE", VISIBLE_TYPE);
 			pd.put("IS_RECOMMEND", IS_RECOMMEND);
 			pd.put("BROWSE_NUM", BROWSE_NUM);
-			
+			pd.put("STOCK_NUM", STOCK_NUM);
 			projectService.edit(pd);				//执行修改数据库
 		}
 		

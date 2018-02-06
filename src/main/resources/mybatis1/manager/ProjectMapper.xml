@@ -24,7 +24,8 @@
 		IS_RECOMMEND,	
 		BROWSE_NUM,	
 		COVER_PICTURE,	
-		PROJECT_ID
+		PROJECT_ID,
+		STOCK_NUM
 	</sql>
 	
 	<!-- 字段值 -->
@@ -44,7 +45,8 @@
 		#{IS_RECOMMEND},	
 		#{BROWSE_NUM},	
 		#{COVER_PICTURE},
-		#{PROJECT_ID}
+		#{PROJECT_ID},
+		#{STOCK_NUM}
 	</sql>
 	
 	<!-- 新增-->
@@ -86,6 +88,8 @@
 			IS_RECOMMEND = #{IS_RECOMMEND},
 			COVER_PICTURE = #{COVER_PICTURE},
 			BROWSE_NUM = #{BROWSE_NUM},
+			STOCK_NUM = #{STOCK_NUM},
+			EXCHANGE_NUM = #{EXCHANGE_NUM},
 		PROJECT_ID = PROJECT_ID
 		where 
 		PROJECT_ID = #{PROJECT_ID}
@@ -94,7 +98,24 @@
 	<!-- 通过ID获取数据 -->
 	<select id="findById" parameterType="pd" resultType="pd">
 		select 
-		<include refid="Field"></include>
+		PROJECT_NAME,	
+		PROJECT_STAGE,	
+		COMPANY_NAME,	
+		PROJECT_DESC_DETAIL,	
+		QUOTA_LIMIT,	
+		START_TIME,	
+		END_TIME,	
+		PROJECT_STATE,	
+		VISIBLE_TYPE,	
+		CREATE_TIME,	
+		VIDEO_URL,	
+		FILE_URL,	
+		IS_RECOMMEND,	
+		BROWSE_NUM,	
+		COVER_PICTURE,	
+		PROJECT_ID,
+		STOCK_NUM,
+		EXCHANGE_NUM
 		from 
 		<include refid="tableName"></include>
 		where 

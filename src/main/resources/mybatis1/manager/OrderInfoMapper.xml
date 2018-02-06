@@ -81,7 +81,8 @@
 		ORDER_TIME,	
 		ORDER_STATUS,	
 		ORDERINFO_ID,
-		ORDER_FILEPATH
+		ORDER_FILEPATH,
+		PROJECT_ID
 		from 
 		<include refid="tableName"></include>
 		where 

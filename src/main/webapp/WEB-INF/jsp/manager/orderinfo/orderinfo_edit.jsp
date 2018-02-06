@@ -29,6 +29,7 @@
 					
 					<form action="orderinfo/${msg }.do" name="Form" id="Form" method="post">
 						<input type="hidden" name="ORDERINFO_ID" id="ORDERINFO_ID" value="${pd.ORDERINFO_ID}"/>
+						<input type="hidden" name="PROJECT_ID" id="PROJECT_ID" value="${pd.PROJECT_ID}"/>
 						<div id="zhongxin" style="padding-top: 13px;">
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
@@ -77,7 +78,7 @@
 							</tr>
 							<tr>
 								<td style="text-align: center;" colspan="10">
-									<a class="btn btn-mini btn-primary" onclick="save();">保存</a>
+									<c:if test="${2 != pd.ORDER_STATUS }"><a class="btn btn-mini btn-primary" onclick="save();">保存</a></c:if>
 									<a class="btn btn-mini btn-danger" onclick="top.Dialog.close();">取消</a>
 								</td>
 							</tr>
@@ -110,95 +111,6 @@
 		$(top.hangge());
 		//保存
 		function save(){
-		/* 
-			if($("#USER_NAME").val()==""){
-				$("#USER_NAME").tips({
-					side:3,
-		            msg:'请输入用户名',
-		            bg:'#AE81FF',
-		            time:2
-		        });
-				$("#USER_NAME").focus();
-			return false;
-			}
-		
-			if($("#ORDER_TYPE").val()==""){
-				$("#ORDER_TYPE").tips({
-					side:3,
-		            msg:'请输入兑换币种',
-		            bg:'#AE81FF',
-		            time:2
-		        });
-				$("#ORDER_TYPE").focus();
-			return false;
-			}
-		
-			if($("#NUM").val()==""){
-				$("#NUM").tips({
-					side:3,
-		            msg:'请输入兑换数量',
-		            bg:'#AE81FF',
-		            time:2
-		        });
-				$("#NUM").focus();
-			return false;
-			}
-		
-			if($("#NEW_NUM").val()==""){
-				$("#NEW_NUM").tips({
-					side:3,
-		            msg:'请输入新资产数量',
-		            bg:'#AE81FF',
-		            time:2
-		        });
-				$("#NEW_NUM").focus();
-			return false;
-			}
-		
-			if($("#EMAIL").val()==""){
-				$("#EMAIL").tips({
-					side:3,
-		            msg:'请输入联系邮箱',
-		            bg:'#AE81FF',
-		            time:2
-		        });
-				$("#EMAIL").focus();
-			return false;
-			}
-		
-			if($("#TEL").val()==""){
-				$("#TEL").tips({
-					side:3,
-		            msg:'请输入联系电话',
-		            bg:'#AE81FF',
-		            time:2
-		        });
-				$("#TEL").focus();
-			return false;
-			}
-		
-			if($("#ORDER_TIME").val()==""){
-				$("#ORDER_TIME").tips({
-					side:3,
-		            msg:'请输入兑换订单时间',
-		            bg:'#AE81FF',
-		            time:2
-		        });
-				$("#ORDER_TIME").focus();
-			return false;
-			}
-		
-			if($("#ORDER_STATUS").val()==""){
-				$("#ORDER_STATUS").tips({
-					side:3,
-		            msg:'请输入订单状态',
-		            bg:'#AE81FF',
-		            time:2
-		        });
-				$("#ORDER_STATUS").focus();
-			return false;
-			}
-		 */
 			$("#Form").submit();
 			$("#zhongxin").hide();
 			$("#zhongxin2").show();

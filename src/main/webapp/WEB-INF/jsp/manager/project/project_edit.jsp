@@ -182,6 +182,10 @@
 								<td style="width:75px;text-align: right;padding-top: 13px;">浏览数:</td>
 								<td><input type="number" name="BROWSE_NUM" id="BROWSE_NUM" value="${pd.BROWSE_NUM}" maxlength="32" placeholder="这里输入浏览数" title="浏览数" style="width:98%;"/></td>
 							</tr> 
+							<tr>
+								<td style="width:75px;text-align: right;padding-top: 13px;">库存量:</td>
+								<td><input type="number" name="STOCK_NUM" id="STOCK_NUM" value="${pd.STOCK_NUM}" maxlength="32" placeholder="这里输入库存量" title="库存量" style="width:98%;"/></td>
+							</tr> 
 							
 							
 							<tr>
@@ -335,6 +339,16 @@
 		            time:2
 		        });
 				$("#BROWSE_NUM").focus();
+			return false;
+			}
+			if($("#STOCK_NUM").val()==""){
+				$("#STOCK_NUM").tips({
+					side:3,
+		            msg:'库存量不能为空！',
+		            bg:'#AE81FF',
+		            time:2
+		        });
+				$("#STOCK_NUM").focus();
 			return false;
 			}
 			
