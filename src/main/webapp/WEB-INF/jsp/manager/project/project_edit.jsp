@@ -87,15 +87,20 @@
 								<input  type="hidden" name="NOWTIME" id="NOWTIME" value="<fmt:formatDate value="<%=new Date()%>" pattern="yyyy-MM-dd HH:mm:ss"/>" type="text"
 								 onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" readonly="readonly" placeholder="开始时间" title="开始时间" style="width:80%;"/>
 								
-								<input  name="START_TIME" id="START_TIME" value="${pd.START_TIME}" type="text"
+								<%-- <input  name="START_TIME" id="START_TIME" value="${pd.START_TIME}" type="text"
 								 onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'#F{$dp.$D(\'NOWTIME\')}',maxDate:'#F{$dp.$D(\'END_TIME\')}'})" readonly="readonly" placeholder="开始时间" title="开始时间" style="width:80%;"/>
+								 --%><input  name="START_TIME" id="START_TIME" value="${pd.START_TIME}" type="text"
+								 onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" readonly="readonly" placeholder="开始时间" title="开始时间" style="width:80%;"/>
 								</td>
 							</tr>
 							<tr>
 								<td style="width:300px;text-align: right;padding-top: 13px;">结束时间:</td>
 								<td>
-								<input  name="END_TIME" id="END_TIME" value="${pd.END_TIME}" type="text"
+								<%-- <input  name="END_TIME" id="END_TIME" value="${pd.END_TIME}" type="text"
 								 onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'#F{$dp.$D(\'START_TIME\')}',maxDate:'2130-10-01'})" readonly="readonly" placeholder="结束时间" title="结束时间" style="width:80%;"/></td>
+								 --%><input  name="END_TIME" id="END_TIME" value="${pd.END_TIME}" type="text"
+								 onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" readonly="readonly" placeholder="结束时间" title="结束时间" style="width:80%;"/></td>
+							
 							</tr>
 							
 							<tr>
