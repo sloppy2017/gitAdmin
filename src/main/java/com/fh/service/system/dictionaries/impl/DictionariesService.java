@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import com.fh.entity.system.Type;
 import org.springframework.stereotype.Service;
 
 import com.fh.dao.DaoSupport;
@@ -82,6 +83,11 @@ public class DictionariesService implements DictionariesManager{
 	@SuppressWarnings("unchecked")
 	public List<Dictionaries> listSubDictByParentId(String parentId) throws Exception {
 		return (List<Dictionaries>) dao.findForList("DictionariesMapper.listSubDictByParentId", parentId);
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Type> getbyNewsType() throws Exception {
+		return (List<Type>) dao.findForList("DictionariesMapper.getbyNewsType",null);
 	}
 	
 	/**

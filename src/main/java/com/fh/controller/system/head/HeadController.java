@@ -82,7 +82,7 @@ public class HeadController extends BaseController {
 			pdList.add(pds);
 			map.put("list", pdList);
 			PageData pdPhoto = userphotoService.findById(pds);
-			map.put("userPhoto", null == pdPhoto?"static/ace/avatars/user.jpg":pdPhoto.getString("PHOTO2"));//用户头像
+			map.put("userPhoto", null == pdPhoto?"static/ace/avatars/avatar2.png":pdPhoto.getString("PHOTO2"));//用户头像
 			map.put("fhsmsCount", fhsmsService.findFhsmsCount(Jurisdiction.getUsername()).get("fhsmsCount").toString());//站内信未读总数
 			String strWEBSOCKET = Tools.readTxtFile(Const.WEBSOCKET);//读取WEBSOCKET配置
 			if(null != strWEBSOCKET && !"".equals(strWEBSOCKET)){

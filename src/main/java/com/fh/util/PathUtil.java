@@ -63,7 +63,7 @@ public class PathUtil {
 	}
 	
 	public static String getClasspath1(){
-		String path = (String.valueOf(Thread.currentThread().getContextClassLoader().getResource(""))+"../../../").replaceAll("file:/", "").replaceAll("%20", " ").trim();	
+		String path = (String.valueOf(Thread.currentThread().getContextClassLoader().getResource(""))+"../../").replaceAll("file:/", "").replaceAll("%20", " ").trim();
 		if(path.indexOf(":") != 1){
 			path = File.separator + path;
 		}

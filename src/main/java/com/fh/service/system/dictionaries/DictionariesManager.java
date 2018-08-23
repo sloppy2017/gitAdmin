@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.fh.entity.Page;
 import com.fh.entity.system.Dictionaries;
+import com.fh.entity.system.Type;
 import com.fh.util.PageData;
 
 /** 
@@ -57,7 +58,9 @@ public interface DictionariesManager{
 	 * @throws Exception
 	 */
 	public List<Dictionaries> listSubDictByParentId(String parentId) throws Exception;
-	
+
+
+	public List<Type> getbyNewsType() throws Exception;
 	/**
 	 * 获取所有数据并填充每条数据的子级列表(递归处理)
 	 * @param MENU_ID
