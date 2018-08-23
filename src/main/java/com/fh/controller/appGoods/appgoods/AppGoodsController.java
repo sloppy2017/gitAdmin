@@ -151,6 +151,8 @@ public class AppGoodsController extends BaseController {
 		mv.addObject("order_statuss", order_statuss);
 		mv.addObject("msg", "edit");
 		mv.addObject("pd", pd);
+		System.out.println("");
+
 		return mv;
 	}	
 	
